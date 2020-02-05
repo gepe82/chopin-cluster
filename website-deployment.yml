@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-deployment
+  labels:
+    app: website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: website-pod
+      app: website
+  template:
+    metadata:
+      name: website-pod
+      labels:
+        name: website-pod
+        app: website
+
+    spec:
+      containers:
+      - name: web
+        image: gcr.io/chopin-budapest-new-website/chopin_new_web
+        ports:
+        - containerPort: 80

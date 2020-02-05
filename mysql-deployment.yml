@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+  labels:
+    app: website
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mysql-pod
+      app: website
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        name: mysql-pod
+        app: website
+
+    spec:
+      containers:
+      - name: mysql
+        image: mariadb:10.1.41
+        ports:
+        - containerPort: 3306
